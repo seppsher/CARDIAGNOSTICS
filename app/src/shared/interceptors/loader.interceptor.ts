@@ -3,7 +3,7 @@ import {
 	HttpInterceptorFn,
 } from '@angular/common/http';
 import { catchError, EMPTY, finalize } from 'rxjs';
-import { LoadingService } from '../services/loading.service';
+import { LoadingService } from '@shared/services/loading.service';
 
 export const loaderInterceptor: HttpInterceptorFn = (request, next) => {
   const loadingService = inject(LoadingService);
