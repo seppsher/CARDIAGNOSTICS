@@ -1,0 +1,11 @@
+<form [formGroup]="moviesDataFiltersFormStateService.form" class="container grid sm:grid-cols-3 grid-cols-1 gap-4">
+  <mat-form-field class="">
+    <mat-label>Title</mat-label>
+    <input matInput placeholder="Title" [formControl]="moviesDataFiltersFormStateService.title" />
+  </mat-form-field>
+
+  <mat-form-field class="">
+    <mat-label>Year</mat-label>
+    <input matInput placeholder="Year" [formControl]="moviesDataFiltersFormStateService.year" />
+  </mat-form-field>
+</form>

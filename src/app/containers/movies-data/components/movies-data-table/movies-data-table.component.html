@@ -1,0 +1,39 @@
+<mat-table
+  [dataSource]="movies"
+  class="mat-elevation-z8"
+  cdkDropListGroup
+  matSort
+>
+  @for (column of columns; track column; let i = $index) {
+    <ng-container [matColumnDef]="column.field">
+      <div cdkDropList cdkDropListOrientation="horizontal">
+        <mat-header-cell
+            (mouseup)="dropListDropped($event, i)"
+            mat-sort-header
+            *matHeaderCellDef
+            cdkDrag
+            cdkDragLockAxis="x"
+            cdk
+            (cdkDragStarted)="dragStarted($event, i)"
+            [cdkDragData]="{name: column.field, columIndex: i}"
+          >
+            {{ column.field }}
+        </mat-header-cell>
+      </div>
+      <mat-cell *matCellDef="let row">
+        @if (column.field === MOVIES_DATA_TABLE_CONST.POSTER) {
+          <img [src]="row[column.field]" alt="Poster not provided" class="my-2" />
+        } @else {
+          {{ row[column.field] | defaultValue }} 
+        }
+      </mat-cell>
+    </ng-container>
+  } 
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+
+  <div *matNoDataRow class="flex justify-center items-center p-5">
+    <span>No data matching the filter.</span>
+  </div>
+</mat-table>
